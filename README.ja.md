@@ -1,20 +1,20 @@
 # mcp-function-calling-adapter
 
-English | [日本語](./README.ja.md)
+[English](./README.md) | 日本語
 
-This library provides a function calling adapter for the Model Context Protocol (MCP).
+Model Context Protocol (MCP) の function calling 用のアダプタを提供するライブラリです。
 
-You can use standardized MCP Server implementations directly with function calling through this library.
+このライブラリを使用することで、標準化されて提供される MCP Server 実装をそのまま function calling で利用できます。
 
-## Installation
+## インストール
 
 ```bash
 pnpm add mcp-function-calling-adapter
 ```
 
-## Usage
+## 使用例
 
-Here's an example using it with the OpenAI API:
+以下は OpenAI API と組み合わせて使用する例です：
 
 ```typescript
 import { McpFunctionCallingAdapter } from "mcp-function-calling-adapter"
@@ -52,7 +52,7 @@ const completion = await openai.chat.completions.create({
   tool_choice: "auto",
 })
 
-// Call tool
+// ツールの呼び出し
 const toolCall = completion.choices.at(0)?.message.tool_calls?.at(0)
 if (toolCall) {
   const args: Record<string, unknown> = JSON.parse(toolCall.function.arguments)
@@ -70,20 +70,17 @@ if (toolCall) {
 
 ### `startServers()`
 
-Starts the MCP servers and loads available tools.
+MCP サーバーを起動し、利用可能なツールを読み込みます。
 
 ### `clean()`
 
-Disconnects from the MCP servers.
+MCP サーバーとの接続を切断します。
 
 ### `getTools()`
 
-Returns a list of available tools.
-The response includes the tool name, description, and input JSONSchema, which can be directly used for function calling schema definitions.
+利用可能なツールの一覧を取得します。
+レスポンスにはツールの名前、説明、input の JSONSchema が含まれておりそのまま function calling 用のスキーマ定義に渡すことができます。
 
 ### `executeTool(name: string, args: Record<string, unknown>)`
 
-Executes a tool with the specified name and returns the response from the MCP Server.
-
-- `name`: The name of the tool to execute
-- `args`: Arguments to pass to the tool
+指定された名前のツールを実行して、戻り値として MCPServer のレスポンスを返します。
