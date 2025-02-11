@@ -28,8 +28,5 @@
     "Uncapitalize",
     "ununsed"
   ],
-  "ignorePaths": [
-    "pnpm-lock.yaml",
-    ".vscode/settings.json"
-  ]
+  "ignorePaths": ["pnpm-lock.yaml", ".vscode/settings.json"]
 }

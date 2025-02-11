@@ -9,7 +9,7 @@ const tsconfigPaths = ["./tsconfig.config.json", "./tsconfig.src.json"]
 
 const config = tsEslint.config(
   {
-    ignores: ["scripts", ".github"],
+    ignores: ["scripts", ".github", "dist"],
   },
   eslint.configs.recommended,
   tsEslint.configs.recommendedTypeChecked,
