@@ -11,7 +11,6 @@ type Tool = {
 }
 
 export class McpFunctionCallingAdapter {
-  private initializePromise: Promise<void>
   private tools: Tool[] = []
   private client: Client
 
@@ -32,15 +31,9 @@ export class McpFunctionCallingAdapter {
         },
       }
     )
-
-    this.initializePromise = this.initialize()
   }
 
-  async ready() {
-    return await this.initializePromise
-  }
-
-  private async initialize() {
+  async startServers() {
     for (const [name, serverParameter] of Object.entries(this.parameters)) {
       const transport = new StdioClientTransport(serverParameter)
       await this.client.connect(transport)
@@ -49,6 +42,10 @@ export class McpFunctionCallingAdapter {
 
     const { tools } = await this.client.listTools()
     this.tools = tools
+  }
+
+  async clean() {
+    await this.client.close()
   }
 
   getTools() {

@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from "vitest"
+import { describe, it, expect, beforeEach, afterEach } from "vitest"
 import { McpFunctionCallingAdapter } from "./index.js"
 
 describe("McpFunctionCallingAdapter", () => {
@@ -13,9 +13,13 @@ describe("McpFunctionCallingAdapter", () => {
     })
   })
 
+  afterEach(async () => {
+    await adapter.clean()
+  })
+
   describe("getTools", () => {
     it("ツールの一覧の name と jsonSchema が取得できるべき", async () => {
-      await adapter.ready()
+      await adapter.startServers()
       const tools = adapter.getTools()
       expect(tools.length).toBeGreaterThan(0)
       // sequential-thinking サーバーが提供する tools の基本的な検証
@@ -26,7 +30,7 @@ describe("McpFunctionCallingAdapter", () => {
 
   describe("executeTool", () => {
     it("正常な引数を渡した時、実行してレスポンスを返せるべき", async () => {
-      await adapter.ready()
+      await adapter.startServers()
       const tools = adapter.getTools()
       const firstTool = tools[0]
       if (!firstTool) {
@@ -56,7 +60,7 @@ describe("McpFunctionCallingAdapter", () => {
     })
 
     it("異常な引数を渡した時、エラーレスポンスが返せるべき", async () => {
-      await adapter.ready()
+      await adapter.startServers()
       const tools = adapter.getTools()
       const firstTool = tools[0]
       if (!firstTool) {
