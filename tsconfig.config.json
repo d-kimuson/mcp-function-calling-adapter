@@ -6,6 +6,6 @@
     "allowJs": true,
     "checkJs": true
   },
-  "include": ["eslint.config.ts", ".prettierrc.js"],
+  "include": ["eslint.config.ts", ".prettierrc.js", "vitest.config.ts"],
   "exclude": ["src"]
 }
