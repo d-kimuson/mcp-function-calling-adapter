@@ -1,0 +1,53 @@
+{
+  "name": "mcp-function-calling-adapter",
+  "description": "pnpm boilerplate",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": "./dist/index.js",
+  "scripts": {
+    "lint": "pnpm /^lint:.*/",
+    "lint:cspell": "cspell lint './**/*.{tsx,ts,mts,mcs,mjs,cjs,js,json,md,yml,yaml}' --gitignore --cache",
+    "lint:prettier": "pnpm run:prettier . --check",
+    "lint:eslint": "pnpm run:eslint .",
+    "fix": "pnpm /^fix:.*/",
+    "fix:prettier": "pnpm run:prettier . --write",
+    "fix:eslint": "pnpm run:eslint . --fix",
+    "run:prettier": "prettier --ignore-unknown --no-error-on-unmatched-pattern --cache",
+    "run:eslint": "eslint --cache --no-error-on-unmatched-pattern",
+    "setup:check-manager": "npx -y only-allow pnpm",
+    "preinstall": "pnpm /^setup:.*/"
+  },
+  "devDependencies": {
+    "@actions/github": "6.0.0",
+    "@eslint/js": "^9.20.0",
+    "@octokit/rest": "21.1.0",
+    "@tsconfig/node22": "^22.0.0",
+    "@tsconfig/strictest": "2.0.5",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^22.13.1",
+    "@typescript-eslint/parser": "^8.24.0",
+    "cspell": "8.17.3",
+    "eslint": "9.20.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-import-resolver-typescript": "3.7.0",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "globals": "^15.14.0",
+    "lefthook": "1.10.10",
+    "prettier": "3.5.0",
+    "typescript": "5.7.3",
+    "typescript-eslint": "^8.24.0"
+  },
+  "engines": {
+    "npm": "forbidden, use pnpm",
+    "yarn": "forbidden, use pnpm",
+    "pnpm": ">=9.12.3",
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@9.12.3",
+  "private": true,
+  "author": "d-kimuson",
+  "keywords": [],
+  "license": "MIT"
+}
