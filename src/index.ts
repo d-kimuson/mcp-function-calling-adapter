@@ -52,10 +52,25 @@ export class McpFunctionCallingAdapter {
     return this.tools
   }
 
-  async executeTool(name: string, args: Record<string, unknown>) {
-    return await this.client.callTool({
+  async executeTool(
+    name: string,
+    args: Record<string, unknown>
+  ): Promise<{
+    _meta: unknown
+    content: unknown
+    isError: unknown
+    toolResult: unknown
+  }> {
+    const toolResult = await this.client.callTool({
       name,
       arguments: args,
     })
+
+    return {
+      _meta: toolResult._meta,
+      content: toolResult.content,
+      isError: toolResult.isError,
+      toolResult: toolResult.toolResult,
+    }
   }
 }
