@@ -2,6 +2,10 @@
 
 English | [日本語](./README.ja.md)
 
+[![npm version](https://badge.fury.io/js/mcp-function-calling-adapter.svg)](https://badge.fury.io/js/mcp-function-calling-adapter)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js CI](https://github.com/d-kimuson/mcp-function-calling-adapter/workflows/Node.js%20CI/badge.svg)](https://github.com/d-kimuson/mcp-function-calling-adapter/actions)
+
 This library provides a function calling adapter for the Model Context Protocol (MCP).
 
 You can use standardized MCP Server implementations directly with function calling through this library.
@@ -87,3 +91,22 @@ Executes a tool with the specified name and returns the response from the MCP Se
 
 - `name`: The name of the tool to execute
 - `args`: Arguments to pass to the tool
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and contribute to the project.
+
+### Development
+
+1. Clone the repository
+2. Install dependencies: `pnpm install`
+3. Run tests: `pnpm test`
+4. Build: `pnpm build`
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a list of changes and version history.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

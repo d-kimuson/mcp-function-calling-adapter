@@ -1,8 +1,17 @@
 {
   "name": "mcp-function-calling-adapter",
-  "description": "pnpm boilerplate",
+  "description": "This library provides a function calling adapter for the Model Context Protocol (MCP).",
   "version": "0.0.1",
   "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "README.ja.md",
+    "LICENSE"
+  ],
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
@@ -26,6 +35,9 @@
     "test": "vitest run",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.4.1"
   },
   "devDependencies": {
     "@actions/github": "6.0.0",
@@ -59,14 +71,30 @@
     "npm": "forbidden, use pnpm",
     "yarn": "forbidden, use pnpm",
     "pnpm": ">=9.12.3",
-    "node": ">=22"
+    "node": ">=20"
   },
   "packageManager": "pnpm@9.12.3",
-  "private": true,
   "author": "d-kimuson",
-  "keywords": [],
+  "keywords": [
+    "mcp",
+    "function calling",
+    "model context protocol",
+    "openai",
+    "ai",
+    "function-calling",
+    "adapter"
+  ],
   "license": "MIT",
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.4.1"
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d-kimuson/mcp-function-calling-adapter"
+  },
+  "homepage": "https://github.com/d-kimuson/mcp-function-calling-adapter",
+  "bugs": {
+    "url": "https://github.com/d-kimuson/mcp-function-calling-adapter/issues"
   }
 }
