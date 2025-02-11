@@ -4,7 +4,7 @@ English | [日本語](./README.ja.md)
 
 [![npm version](https://badge.fury.io/js/mcp-function-calling-adapter.svg)](https://badge.fury.io/js/mcp-function-calling-adapter)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js CI](https://github.com/d-kimuson/mcp-function-calling-adapter/workflows/Node.js%20CI/badge.svg)](https://github.com/d-kimuson/mcp-function-calling-adapter/actions)
+[![Check](https://github.com/d-kimuson/mcp-function-calling-adapter/workflows/Check/badge.svg)](https://github.com/d-kimuson/mcp-function-calling-adapter/actions)
 
 This library provides a function calling adapter for the Model Context Protocol (MCP).
 
