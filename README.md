@@ -58,9 +58,11 @@ const completion = await openai.chat.completions.create({
 
 // Call tool
 const toolCall = completion.choices.at(0)?.message.tool_calls?.at(0)
-if (toolCall) {
-  const args: Record<string, unknown> = JSON.parse(toolCall.function.arguments)
-  const response = await adapter.executeTool(toolCall.function.name, args)
+if (toolCall && adapter.isRegisteredTool(toolCall.function.name)) {
+  const response = await adapter.executeTool(
+    toolCall.function.name,
+    JSON.parse(toolCall.function.arguments)
+  )
   messages.push(completion.choices[0].message)
   messages.push({
     role: "tool",
@@ -84,6 +86,13 @@ Disconnects from the MCP servers.
 
 Returns a list of available tools.
 The response includes the tool name, description, and input JSONSchema, which can be directly used for function calling schema definitions.
+
+### `isRegisteredTool(name: string)`
+
+Checks if a tool with the specified name is registered and available for use.
+
+- `name`: The name of the tool to check
+- Returns: `boolean` - `true` if the tool is registered, `false` otherwise
 
 ### `executeTool(name: string, args: Record<string, unknown>)`
 

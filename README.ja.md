@@ -54,9 +54,11 @@ const completion = await openai.chat.completions.create({
 
 // ツールの呼び出し
 const toolCall = completion.choices.at(0)?.message.tool_calls?.at(0)
-if (toolCall) {
-  const args: Record<string, unknown> = JSON.parse(toolCall.function.arguments)
-  const response = await adapter.executeTool(toolCall.function.name, args)
+if (toolCall && adapter.isRegisteredTool(toolCall.function.name)) {
+  const response = await adapter.executeTool(
+    toolCall.function.name,
+    JSON.parse(toolCall.function.arguments)
+  )
   messages.push(completion.choices[0].message)
   messages.push({
     role: "tool",
@@ -81,6 +83,16 @@ MCP サーバーとの接続を切断します。
 利用可能なツールの一覧を取得します。
 レスポンスにはツールの名前、説明、input の JSONSchema が含まれておりそのまま function calling 用のスキーマ定義に渡すことができます。
 
+### `isRegisteredTool(name: string)`
+
+指定された名前のツールが登録されており、使用可能かどうかを確認します。
+
+- `name`: 確認するツールの名前
+- 戻り値: `boolean` - ツールが登録されている場合は `true`、そうでない場合は `false`
+
 ### `executeTool(name: string, args: Record<string, unknown>)`
 
 指定された名前のツールを実行して、戻り値として MCPServer のレスポンスを返します。
+
+- `name`: 実行するツールの名前
+- `args`: ツールに渡す引数

@@ -52,6 +52,10 @@ export class McpFunctionCallingAdapter {
     return this.tools
   }
 
+  isRegisteredTool(name: string) {
+    return this.tools.map(({ name }) => name).includes(name)
+  }
+
   async executeTool(
     name: string,
     args: Record<string, unknown>
