@@ -48,6 +48,8 @@
     "lefthook": "1.10.10",
     "openai": "^4.83.0",
     "prettier": "3.5.0",
+    "release-it": "^18.1.2",
+    "release-it-pnpm": "^4.6.4",
     "tsup": "^8.3.6",
     "typescript": "5.7.3",
     "typescript-eslint": "^8.24.0",
