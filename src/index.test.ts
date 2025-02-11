@@ -5,7 +5,7 @@ describe("McpFunctionCallingAdapter", () => {
   let adapter: McpFunctionCallingAdapter
 
   beforeEach(() => {
-    adapter = new McpFunctionCallingAdapter("test_adapter", {
+    adapter = new McpFunctionCallingAdapter("test_adapter", "1.0.0", {
       "sequential-thinking": {
         command: "npx",
         args: ["-y", "@modelcontextprotocol/server-sequential-thinking"],

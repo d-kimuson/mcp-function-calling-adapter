@@ -15,13 +15,14 @@ export class McpFunctionCallingAdapter {
   private client: Client
 
   constructor(
-    private name: string,
+    name: string,
+    version: string,
     private parameters: Record<string, StdioServerParameters>
   ) {
     this.client = new Client(
       {
-        name: this.name,
-        version: "1.0.0",
+        name,
+        version,
       },
       {
         capabilities: {
