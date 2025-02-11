@@ -34,41 +34,45 @@ const openai = new OpenAI({
   apiKey: "your api key here",
 })
 
-await adapter.ready()
+try {
+  await adapter.startServers()
 
-const messages = [
-  {
-    role: "user",
-    content: "What's the weather like in Paris today?",
-  },
-]
-const completion = await openai.chat.completions.create({
-  model: "gpt-4o-mini",
-  messages,
-  tools: adapter.getTools().map((tool) => ({
-    type: "function",
-    function: {
-      name: tool.name,
-      description: tool.description ?? "",
-      parameters: tool.inputSchema,
+  const messages = [
+    {
+      role: "user",
+      content: "What's the weather like in Paris today?",
     },
-  })),
-  tool_choice: "auto",
-})
-
-// Call tool
-const toolCall = completion.choices.at(0)?.message.tool_calls?.at(0)
-if (toolCall && adapter.isRegisteredTool(toolCall.function.name)) {
-  const response = await adapter.executeTool(
-    toolCall.function.name,
-    JSON.parse(toolCall.function.arguments)
-  )
-  messages.push(completion.choices[0].message)
-  messages.push({
-    role: "tool",
-    tool_call_id: toolCall.id,
-    content: response.content.toString(),
+  ]
+  const completion = await openai.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages,
+    tools: adapter.getTools().map((tool) => ({
+      type: "function",
+      function: {
+        name: tool.name,
+        description: tool.description ?? "",
+        parameters: tool.inputSchema,
+      },
+    })),
+    tool_choice: "auto",
   })
+
+  // Call tool
+  const toolCall = completion.choices.at(0)?.message.tool_calls?.at(0)
+  if (toolCall && adapter.isRegisteredTool(toolCall.function.name)) {
+    const response = await adapter.executeTool(
+      toolCall.function.name,
+      JSON.parse(toolCall.function.arguments)
+    )
+    messages.push(completion.choices[0].message)
+    messages.push({
+      role: "tool",
+      tool_call_id: toolCall.id,
+      content: response.content.toString(),
+    })
+  }
+} finally {
+  await adapter.clean()
 }
 ```
 
