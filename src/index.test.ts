@@ -24,7 +24,7 @@ describe("McpFunctionCallingAdapter", () => {
       expect(tools.length).toBeGreaterThan(0)
       // sequential-thinking サーバーが提供する tools の基本的な検証
       expect(tools[0]?.name).toStrictEqual("sequentialthinking")
-      expect(tools[0]?.inputSchema).toHaveProperty("type")
+      expect(tools[0]?.jsonSchema).toHaveProperty("type")
     })
   })
 

@@ -3,11 +3,16 @@ import {
   StdioClientTransport,
   type StdioServerParameters,
 } from "@modelcontextprotocol/sdk/client/stdio.js"
+import { jsonSchemaToZod, type JsonSchema } from "json-schema-to-zod"
 
 type Tool = {
   name: string
   description?: string | undefined
-  inputSchema: Record<string, unknown> /* JSONSchema */
+  inputSchema: {
+    type: "object"
+    properties?: Record<string, JsonSchema>
+    required?: string[]
+  }
 }
 
 export class McpFunctionCallingAdapter {
@@ -42,6 +47,7 @@ export class McpFunctionCallingAdapter {
     }
 
     const { tools } = await this.client.listTools()
+    // @ts-expect-error -- valid
     this.tools = tools
   }
 
@@ -50,7 +56,12 @@ export class McpFunctionCallingAdapter {
   }
 
   getTools() {
-    return this.tools
+    return this.tools.map(({ name, description, inputSchema }) => ({
+      name,
+      description,
+      jsonSchema: inputSchema,
+      zodSchema: jsonSchemaToZod(inputSchema),
+    }))
   }
 
   isRegisteredTool(name: string) {

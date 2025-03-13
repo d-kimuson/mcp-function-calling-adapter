@@ -11,6 +11,9 @@ importers:
       '@modelcontextprotocol/sdk':
         specifier: ^1.4.1
         version: 1.4.1
+      json-schema-to-zod:
+        specifier: ^2.6.0
+        version: 2.6.0
     devDependencies:
       '@actions/github':
         specifier: 6.0.0
@@ -68,7 +71,7 @@ importers:
         version: 1.10.10
       openai:
         specifier: ^4.83.0
-        version: 4.83.0(zod@3.24.1)
+        version: 4.83.0(zod@3.24.2)
       prettier:
         specifier: 3.5.0
         version: 3.5.0
@@ -90,6 +93,9 @@ importers:
       vitest:
         specifier: ^3.0.5
         version: 3.0.5(@types/node@22.13.1)(jiti@2.4.0)(tsx@4.19.2)(yaml@2.7.0)
+      zod:
+        specifier: ^3.24.2
+        version: 3.24.2
 
   apps/backend:
     devDependencies:
@@ -3105,6 +3111,10 @@ packages:
   json-parse-even-better-errors@2.3.1:
     resolution: {integrity: sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==}
 
+  json-schema-to-zod@2.6.0:
+    resolution: {integrity: sha512-6sFZqOzHZeON8g2ZW5HJ114Hb/FffNCjWh8dgulJaKFkUqKCEWZAzF4+g07SQpfBZF7HXemwedtdLypZzmnVpQ==}
+    hasBin: true
+
   json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
 
@@ -4426,8 +4436,8 @@ packages:
     peerDependencies:
       zod: ^3.24.1
 
-  zod@3.24.1:
-    resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
+  zod@3.24.2:
+    resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
 
 snapshots:
 
@@ -5203,8 +5213,8 @@ snapshots:
       content-type: 1.0.5
       eventsource: 3.0.5
       raw-body: 3.0.0
-      zod: 3.24.1
-      zod-to-json-schema: 3.24.1(zod@3.24.1)
+      zod: 3.24.2
+      zod-to-json-schema: 3.24.1(zod@3.24.2)
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -7650,6 +7660,8 @@ snapshots:
 
   json-parse-even-better-errors@2.3.1: {}
 
+  json-schema-to-zod@2.6.0: {}
+
   json-schema-traverse@0.4.1: {}
 
   json-stable-stringify-without-jsonify@1.0.1: {}
@@ -7976,7 +7988,7 @@ snapshots:
       is-inside-container: 1.0.0
       is-wsl: 2.2.0
 
-  openai@4.83.0(zod@3.24.1):
+  openai@4.83.0(zod@3.24.2):
     dependencies:
       '@types/node': 18.19.75
       '@types/node-fetch': 2.6.12
@@ -7986,7 +7998,7 @@ snapshots:
       formdata-node: 4.4.1
       node-fetch: 2.7.0
     optionalDependencies:
-      zod: 3.24.1
+      zod: 3.24.2
     transitivePeerDependencies:
       - encoding
 
@@ -9034,8 +9046,8 @@ snapshots:
 
   yoctocolors@2.1.1: {}
 
-  zod-to-json-schema@3.24.1(zod@3.24.1):
+  zod-to-json-schema@3.24.1(zod@3.24.2):
     dependencies:
-      zod: 3.24.1
+      zod: 3.24.2
 
-  zod@3.24.1: {}
+  zod@3.24.2: {}
